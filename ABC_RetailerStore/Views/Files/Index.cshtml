@@ -1,0 +1,40 @@
+@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "Log Files";
+}
+
+<h1>Log File </h1>
+
+<p>
+    <a asp-action="Upload" class="btn btn-success">Upload supporting file</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>File Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var fileName in Model) {
+        <tr>
+            <td>@fileName</td>
+            <td>
+                    <div class="action-buttons">
+                <!-- Added Edit, Details, and Delete buttons -->
+                        <a asp-action="Details" asp-route-fileName="@fileName" lass="btn-modern-secondary" title="View Details">
+                            <i class="fas fa-eye"></i></a>
+                        <a asp-action="Edit" asp-route-fileName="@fileName" class="btn-modern-secondary" title="Edit">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                <a asp-action="Download" asp-route-fileName="@fileName" class="btn btn-sm btn-success">Download</a>
+                <a asp-action="Delete" asp-route-fileName="@fileName" class="btn-modern-danger" title="Delete">
+                                <i class="fas fa-trash"></i></a>
+           </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

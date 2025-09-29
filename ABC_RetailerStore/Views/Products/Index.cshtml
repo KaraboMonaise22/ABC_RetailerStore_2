@@ -1,0 +1,70 @@
+ @model IEnumerable<ABCRetail.Web.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+<nav aria-label="breadcrumb">
+    <div class="breadcrumb breadcrumb-modern">
+        <div class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></div>
+        <div class="breadcrumb-item active" aria-current="page">Products</div>
+    </div>
+</nav>
+
+<div class="page-header">
+    <h1 class="page-title">
+        <i class="fas fa-users me-3"></i>Products
+    </h1>
+    <a asp-action="Create" class="btn-modern-primary">
+        Create New Product
+    </a>
+</div>
+<div class="modern-card">
+    <div class="table-responsive">
+
+<table class="table">
+    <thead>
+        <tr>
+                    <td style="padding: 10px;">Name</td>
+                    <td style="padding: 10px;">Description</td>
+                    <td style="padding: 10px;">Price</td>
+
+
+                    <td style="padding: 10px;">Stock</td>
+                    <td style="padding: 10px;">Category</td>
+                    <td style="padding: 10px;">Image</td>
+                    <td style="padding: 30px;"><i class="fas fa-cogs me-2"></i>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                        <td style="padding: 10px;">@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td style="padding: 10px;">@Html.DisplayFor(modelItem => item.Description)</td>&nbsp;
+                        <td style="padding: 10px;">@Html.DisplayFor(modelItem => item.Price)</td>&nbsp;
+                        <td style="padding: 10px;">@Html.DisplayFor(modelItem => item.StockQuantity)</td>&nbsp;
+                        <td style="padding: 10px;">@Html.DisplayFor(modelItem => item.Category)</td>&nbsp;
+                         
+            <td>
+                @if (!string.IsNullOrEmpty(item.ImageUrl))
+                {
+                    <img src="@Model." alt="@item.Name" style="width: 50px; height: 50px; object-fit: cover;" />
+                }
+            </td>
+            <td>
+                            <div class="action-buttons">
+                                <a asp-action="Details" asp-route-id="@item.RowKey" class="btn-modern-secondary" title="View Details">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@item.RowKey" class="btn-modern-secondary" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.RowKey" class="btn-modern-danger" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div></div>

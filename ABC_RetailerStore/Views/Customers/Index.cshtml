@@ -1,0 +1,93 @@
+@model IEnumerable<ABCRetail.Web.Models.Customer>
+
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<!-- Added modern page header with breadcrumb and action button -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-modern">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Customers</li>
+    </ol>
+</nav>
+
+<div class="page-header">
+    <h1 class="page-title">
+        <i class="fas fa-users me-3"></i>Customer Profile
+    </h1>
+    <a asp-action="Create" class="btn-modern-primary">
+        <i class="fas fa-plus"></i>
+        Add New Customer
+    </a>
+</div>
+
+<!-- Modern card container for the table -->
+<div class="modern-card">
+    <div class="table-responsive">
+        <table class="table modern-table mb-0">
+            <thead>
+                <tr>
+                    <th><i class="fas fa-user me-2"></i>Name</th>
+                    <th><i class="fas fa-envelope me-2"></i>Email</th>
+                    <th><i class="fas fa-phone me-2"></i>Phone</th>
+                    <th><i class="fas fa-map-marker-alt me-2"></i>Address</th>
+                    <th><i class="fas fa-calendar me-2"></i>Created</th>
+                    <th><i class="fas fa-cogs me-2"></i>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+        @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="avatar-circle me-3">
+                                @item.FirstName.Substring(0,1)@item.LastName.Substring(0,1)
+                            </div>
+                            <div>
+                                <div class="fw-medium">@item.FirstName @item.LastName</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                    <td>
+                        <span class="text-muted">@(item.Address?.Length > 30 ? item.Address.Substring(0, 30) + "..." : item.Address)</span>
+                    </td>
+                    <td>
+                        <span class="text-muted">@item.CreatedDate.ToString("MMM dd, yyyy")</span>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <a asp-action="Details" asp-route-id="@item.RowKey" class="btn-modern-secondary" title="View Details">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@item.RowKey" class="btn-modern-secondary" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.RowKey" class="btn-modern-danger" title="Delete">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+    </div>
+</div>
+ 
+<style>
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+</style>

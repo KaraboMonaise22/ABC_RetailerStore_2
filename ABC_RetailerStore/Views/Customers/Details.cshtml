@@ -1,0 +1,146 @@
+@model ABCRetail.Web.Models.Customer
+
+@{
+    ViewData["Title"] = "Customer Details";
+}
+
+<!-- Added modern breadcrumb navigation -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-modern">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index">Customers</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Details</li>
+    </ol>
+</nav>
+
+<div class="page-header">
+    <h1 class="page-title">
+        <i class="fas fa-user me-3"></i>Customer Details
+    </h1>
+    <div class="action-buttons">
+        <a asp-action="Edit" asp-route-id="@Model.RowKey" class="btn-modern-primary">
+            <i class="fas fa-edit"></i>
+            Edit Customer
+        </a>
+    </div>
+</div>
+
+<!-- Modern card layout for customer details -->
+<div class="row">
+    <div class="col-lg-8">
+        <div class="modern-card">
+            <div class="row">
+                <div class="col-md-4 text-center mb-4">
+                    <!-- Added customer avatar -->
+                    <div class="customer-avatar mx-auto mb-3">
+                        @Model.FirstName.Substring(0,1)@Model.LastName.Substring(0,1)
+                    </div>
+                    <h4 class="mb-1">@Model.FirstName @Model.LastName</h4>
+                    <p class="text-muted">Customer ID: @Model.RowKey</p>
+                </div>
+                <div class="col-md-8">
+                    <div class="customer-details">
+                        <div class="detail-item">
+                            <div class="detail-label">
+                                <i class="fas fa-envelope text-primary me-2"></i>Email Address
+                            </div>
+                            <div class="detail-value">@Html.DisplayFor(model => model.Email)</div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <div class="detail-label">
+                                <i class="fas fa-phone text-primary me-2"></i>Phone Number
+                            </div>
+                            <div class="detail-value">@Html.DisplayFor(model => model.Phone)</div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <div class="detail-label">
+                                <i class="fas fa-map-marker-alt text-primary me-2"></i>Address
+                            </div>
+                            <div class="detail-value">@Html.DisplayFor(model => model.Address)</div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <div class="detail-label">
+                                <i class="fas fa-calendar text-primary me-2"></i>Customer Since
+                            </div>
+                            <div class="detail-value">@Model.CreatedDate.ToString("MMMM dd, yyyy")</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <!-- Added quick actions card -->
+        <div class="modern-card">
+            <h5 class="mb-3">
+                <i class="fas fa-bolt me-2"></i>Quick Actions
+            </h5>
+            <div class="d-grid gap-2">
+                <a asp-action="Edit" asp-route-id="@Model.RowKey" class="btn-modern-primary">
+                    <i class="fas fa-edit"></i>
+                    Edit Customer
+                </a>
+                <a asp-action="Delete" asp-route-id="@Model.RowKey" class="btn-modern-danger">
+                    <i class="fas fa-trash"></i>
+                    Delete Customer
+                </a>
+                <a asp-action="Index" class="btn-modern-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to List
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.customer-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.customer-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.detail-value {
+    font-size: 1rem;
+    color: var(--foreground);
+    font-weight: 500;
+}
+
+/* media (max-width: 768px) {
+    .customer-details {
+        margin-top: 1rem;
+    } */
+}
+</style>

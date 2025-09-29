@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ABC Retail</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ABCRetail.Web.styles.css" asp-append-version="true" />
+    <!-- Added Font Awesome for modern icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4cc9f0;
+            --text-color: #333;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: TEALf5f7fb;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Enhanced navbar with modern styling */
+        /* Enhanced navbar with earth green styling */
+        .navbar {
+            background-color: #50C878 !important; /* Earth Green */
+            box-shadow: var(--shadow);
+            padding: 0.8rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: #ffffff !important; /* White text */
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #ffffff !important; /* White text */
+            font-weight: bold;
+            font-style: italic;
+            padding: 0.5rem 1rem !important;
+            border-radius: var(--border-radius);
+            margin: 0 0.2rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+            .nav-link:hover {
+                color: #000000 !important; /* Black on hover for contrast */
+                background-color: rgba(255, 255, 255, 0.2);
+                transform: translateY(-2px);
+            }
+
+            .nav-link.active {
+                background-color: rgba(255, 255, 255, 0.3);
+                color: #000000 !important;
+            }
+
+
+        /* Main content area */
+        .container-fluid {
+            padding: 0 2rem;
+        }
+
+        main {
+            min-height: calc(100vh - 160px);
+            padding: 2rem 0;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        keyframes fadeIn {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }
+
+        /* Enhanced footer */
+        footer {
+            background-color: white;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            margin-top: 3rem;
+        }
+
+            footer .container-fluid {
+                padding: 1.5rem 2rem;
+            }
+
+        /* Card styling for content sections */
+        .content-card {
+            background: BLUE;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+            .content-card:hover {
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            }
+
+        /* Responsive improvements */
+        media (max-width: 768px) {
+            .container-fluid
+
+        {
+            padding: 0 1rem;
+        }
+
+        .navbar-collapse {
+            margin-top: 1rem;
+        }
+
+        .nav-link {
+            margin: 0.2rem 0;
+        }
+
+        }
+
+        /* Custom button styles */
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: var(--border-radius);
+            padding: 0.5rem 1.5rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+            .btn-primary:hover {
+                background-color: var(--secondary-color);
+                border-color: var(--secondary-color);
+                transform: translateY(-2px);
+            }
+
+        /* Welcome banner - improved */
+.welcome-banner {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    border-radius: 16px; /* smoother rounded corners */
+    padding: 3rem 2rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle animated overlay */
+.welcome-banner::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.15), transparent 70%);
+    transform: rotate(25deg);
+    animation: moveOverlay 12s linear infinite;
+}
+
+/* Title */
+.welcome-banner h1 {
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    letter-spacing: 1px;
+}
+
+/* Subtitle */
+.welcome-banner p {
+    font-size: 1.2rem;
+    opacity: 0.95;
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+/* Responsive improvements */
+@@media (max-width: 768px) {
+    .welcome-banner {
+        padding: 2rem 1.5rem;
+    }
+
+    .welcome-banner h1 {
+        font-size: 1.8rem;
+    }
+
+    .welcome-banner p {
+        font-size: 1rem;
+    }
+}
+
+/* Animation for overlay */
+@@keyframes moveOverlay {
+    0% { transform: rotate(25deg) translateX(0); }
+    50% { transform: rotate(25deg) translateX(50px); }
+    100% { transform: rotate(25deg) translateX(0); }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-store"></i>ABC Retail
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="fas fa-home"></i>Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Customers" asp-action="Index">
+                                <i class="fas fa-users"></i>Customers
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Products" asp-action="Index">
+                                <i class="fas fa-box"></i>Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Orders" asp-action="Index">
+                                <i class="fas fa-shopping-cart"></i>Orders
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Files" asp-action="Index">
+                                <i class="fas fa-file-alt"></i>Files
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid px-4">
+        <main role="main" class="pb-3 fade-in">
+            <!-- Welcome Banner (optional, can be conditionally rendered) -->
+            <div class="welcome-banner">
+                <h1>Welcome to ABC Retailer Store</h1>
+                <p>where you can get anything anywhere!</p>
+            </div>
+
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Enhanced footer with modern styling -->
+    <footer class="border-top footer text-muted">
+        <div class="container-fluid">
+            <div class="row py-3 align-items-center">
+                <div class="col-md-6">
+                    <i class="far fa-copyright me-1"></i> 2025 - ABC Retail Management System
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-muted text-decoration-none">Privacy Policy</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="text-muted text-decoration-none">Terms of Service</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" class="text-muted text-decoration-none">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        // Add active class to current page in navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLocation = location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            navLinks.forEach(link => {
+                if(link.getAttribute('href') === currentLocation) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Add subtle animation to cards on page load
+            const cards = document.querySelectorAll('.content-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.classList.add('fade-in');
+            });
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,79 @@
+@model ABCRetail.Web.Models.Product
+
+@{
+    ViewData["Title"] = "Create Product";
+}
+
+
+<!-- Added modern breadcrumb navigation -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-modern">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index">Product</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create</li>
+    </ol>
+</nav>
+<div class="page-padder">
+<div class="page-header">
+    <h1 class="page-title">
+            <i class="fas fa-user-plus me-3"></i>Create New Product
+    </h1>
+</div>
+
+<!-- Modern form container with enhanced styling -->
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <form asp-action="Create" class="modern-form">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+
+
+
+       
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StockQuantity" class="control-label"></label>
+                <input asp-for="StockQuantity" class="form-control" />
+                <span asp-validation-for="StockQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category" class="control-label"></label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="imageFile" class="control-label">Product Image</label>
+                <input type="file" name="imageFile" class="form-control" accept="image/*" />
+            </div>
+                        <div class="form-group d-flex gap-3 pt-3">
+                            <button type="submit" class="btn-modern-primary">
+                                <i class="fas fa-save"></i>
+                                Create Product
+                            </button>
+                            <a asp-action="Index" class="btn-modern-secondary">
+                                <i class="fas fa-arrow-left"></i>
+                                Back to List
+                            </a>
+                        </div>
+                        </div>
+                        </div>
+                        
+            </form>
+        </div>
+    </div>
+</div>

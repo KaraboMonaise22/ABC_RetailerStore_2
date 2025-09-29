@@ -1,0 +1,27 @@
+/* Navigation Bar Custom Styling */
+.navbar {
+    background-color: #50C878 !important; /* Earth Green */
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    font-weight: bold;
+    font-style: italic;
+}
+
+.navbar-brand {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    color: white !important;
+    font-size: 1.25rem;
+}
+
+.nav-link {
+    color: white !important;
+    font-weight: bold;
+    font-style: italic;
+    transition: color 0.3s ease;
+}
+
+    .nav-link:hover {
+        color: #f0f0f0 !important; /* Slightly lighter white */
+    }

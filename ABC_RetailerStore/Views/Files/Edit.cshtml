@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit File - ABC Retail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --success-color: #4cc9f0;
+            --warning-color: #f8961e;
+            --danger-color: #f94144;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --text-color: #333;
+            --border-radius: 12px;
+            --shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fb 0%, #e4e8f5 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .page-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+            .page-header::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                right: -10%;
+                width: 200px;
+                height: 200px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 50%;
+            }
+
+            .page-header h1 {
+                font-weight: 700;
+                font-size: 2.2rem;
+                margin-bottom: 0.5rem;
+                display: flex;
+                align-items: center;
+            }
+
+                .page-header h1 i {
+                    margin-right: 0.75rem;
+                    font-size: 1.8rem;
+                }
+
+            .page-header p {
+                opacity: 0.9;
+                margin-bottom: 0;
+                font-size: 1.1rem;
+            }
+
+        .form-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .form-container::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+        }
+
+            .form-label i {
+                margin-right: 0.5rem;
+                color: var(--primary-color);
+            }
+
+        .form-control {
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+            .form-control:focus {
+                border-color: var(--primary-color);
+                box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.15);
+            }
+
+            .form-control[readonly] {
+                background-color: #f8f9fa;
+                color: #6c757d;
+            }
+
+        .file-preview {
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 2px dashed #dee2e6;
+            text-align: center;
+        }
+
+        .file-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .file-name {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .file-meta {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            border-radius: 50px;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .btn i {
+                margin-right: 0.5rem;
+            }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+        }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+            }
+
+        .btn-secondary {
+            background: #6c757d;
+            border: none;
+        }
+
+            .btn-secondary:hover {
+                background: #5a6268;
+                transform: translateY(-2px);
+            }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .validation-message {
+            color: var(--danger-color);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+            .validation-message i {
+                margin-right: 0.5rem;
+            }
+
+        .file-extension {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .success-message {
+            background: #d1edff;
+            border-left: 4px solid var(--success-color);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+            .success-message i {
+                color: var(--success-color);
+                margin-right: 0.75rem;
+                font-size: 1.2rem;
+            }
+
+        .breadcrumb {
+            background: transparent;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb-item.active {
+            color: #6c757d;
+        }
+
+        .file-type-badge {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-left: 0.5rem;
+        }
+
+        media (max-width: 576px) {
+            .action-buttons
+
+        {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+        }
+
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        keyframes fadeIn {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        }</style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Breadcrumb Navigation -->
+        <nav aria-label="breadcrumb" class="fade-in">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-file-alt"></i> Files</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit File</li>
+            </ol>
+        </nav>
+
+        <!-- Page Header -->
+        <div class="page-header fade-in">
+            <h1><i class="fas fa-edit"></i> Edit File</h1>
+            <p>Rename your file while maintaining its content and properties</p>
+        </div>
+
+        <!-- Success Message (would be conditionally displayed) -->
+        <!--
+        <div class="success-message fade-in">
+            <i class="fas fa-check-circle"></i>
+            <div>
+                <strong>File updated successfully!</strong> Your changes have been saved and the file has been renamed.
+            </div>
+        </div>
+        -->
+        <!-- Form Container -->
+        <div class="form-container fade-in">
+            <form>
+                <div class="file-preview">
+                    <div class="file-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="file-name">
+                       
+                        <span class="file-type-badge">.txt</span>
+                    </div>
+                    <div class="file-meta">
+                        Last modified: 2 hours ago • Size: 245 KB
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="originalFileName" class="form-label">
+                        <i class="fas fa-file-signature"></i> Current File Name
+                    </label>
+                    <input type="text" class="form-control" id="originalFileName"  readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="newFileName" class="form-label">
+                        <i class="fas fa-pen"></i> New File Name
+                    </label>
+                    <input type="text" class="form-control" id="newFileName" name="newFileName"  required>
+                    <div class="file-extension">
+                        <i class="fas fa-info-circle"></i> File extension will be preserved automatically
+                    </div>
+                    <div class="validation-message" id="fileNameValidation" style="display: none;">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Please enter a valid file name without special characters</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Rename File
+                    </button>
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="form-container fade-in">
+            <h5><i class="fas fa-info-circle text-primary me-2"></i> About File Renaming</h5>
+            <p class="mb-2">When you rename a file:</p>
+            <ul class="mb-0">
+                <li>The file content and properties remain unchanged</li>
+                <li>Any shared links to the file will be updated automatically</li>
+                <li>The file will retain its version history</li>
+                <li>File permissions and sharing settings are preserved</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const newFileNameInput = document.getElementById('newFileName');
+            const validationMessage = document.getElementById('fileNameValidation');
+
+            // Extract file extension for display
+            const originalFileName = "originalFileName";
+            const fileExtension = originalFileName.includes('.')
+                ? originalFileName.substring(originalFileName.lastIndexOf('.'))
+                : '';
+
+            // Validate file name on input
+            newFileNameInput.addEventListener('input', function() {
+                const fileName = this.value;
+                const isValid = /^[a-zA-Z0-9_\-\s\.]+$/.test(fileName);
+
+                if (!isValid && fileName.length > 0) {
+                    validationMessage.style.display = 'flex';
+                    this.classList.add('is-invalid');
+                } else {
+                    validationMessage.style.display = 'none';
+                    this.classList.remove('is-invalid');
+                }
+            });
+
+            // Form submission handler
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const fileName = newFileNameInput.value;
+                const isValid = /^[a-zA-Z0-9_\-\s\.]+$/.test(fileName);
+
+                if (!isValid) {
+                    validationMessage.style.display = 'flex';
+                    newFileNameInput.classList.add('is-invalid');
+                    newFileNameInput.focus();
+                    return;
+                }
+
+                // In a real application, this would submit the form
+                // For demo purposes, we'll show a success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'success-message fade-in';
+                successMessage.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <strong>File updated successfully!</strong> Your changes have been saved and the file has been renamed.
+                    </div>
+                `;
+
+                form.parentNode.insertBefore(successMessage, form);
+
+                // Scroll to the success message
+                successMessage.scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // Add animation to elements
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>

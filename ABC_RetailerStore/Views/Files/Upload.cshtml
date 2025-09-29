@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "Upload Log File";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-modern">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index">File</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Create</li>
+    </ol>
+</nav>
+
+<div class="page-header">
+    <h1 class="page-title">
+        <i class="fas fa-user-plus me-3"></i>Adding supporting file(s)
+    </h1>
+</div>
+
+
+<div class="row justify-content-center">
+    
+       <form asp-action="Create" class="modern-form">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                <label for="file" class="control-label">Select Log File</label>
+                <input type="file" name="file" class="form-control" required />
+            <br />
+            <div class="form-group d-flex gap-3 pt-3">
+                <button type="submit" class="btn-modern-primary">
+                    <i class="fas fa-save"></i>
+                    Upload
+                </button>
+                <a asp-action="Index" class="btn-modern-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to List
+                </a>
+            </div>
+            </form>
+            </div>
+            
